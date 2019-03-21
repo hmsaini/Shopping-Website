@@ -1,0 +1,29 @@
+<div class="container" style="margin-top: 40px;">
+    <div class="row">
+        {{#if orders}}
+        <h4><span style="text-transform: uppercase;font-weight:700;margin-left:20px;">{{orders.0.user.name}}</span>
+            {{!-- Object inside orders --}}
+            &nbsp;your placed orders are :
+        </h4>
+        {{#each orders}}
+        <div class="col-md-12">
+            <div class="card" style="margin-bottom: 20px;">
+                <div class="card-header">
+                    <h3> Order ID : {{this._id}} - <a href="/orders/{{this._id}}">Invoice</a></h3>
+                </div>
+                <div class="card-body">
+                    {{#each products}} {{!-- ARRAY inside orders --}}
+                    <h5>placed on {{this.date}}</h5>
+                    <h4> Title : {{this.product.title}}</h4>
+                    <h4> Quantity : {{this.quantity}}</h4>
+                    <hr>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+        {{/each}}
+        {{else}}
+        <h3>Nothing Found!!</h3>
+        {{/if}}
+    </div>
+</div>

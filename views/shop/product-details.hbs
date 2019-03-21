@@ -1,0 +1,26 @@
+<div class="container" style="margin-top: 40px;">
+    <div class="row">
+        {{#if product}}
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h1>{{product.title}}</h1>
+                </div>
+                <div class="card-body">
+                    <img src="/{{product.imageUrl}}" class="img" alt="">
+                    <h2>Price: $ {{product.price}}</h2>
+                    <p>{{product.description}}</p>
+
+                    <form action="/cart" method="post">
+                        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                        <input type="hidden" name="_id" value="{{product._id}}">
+                        <input type="submit" name="submit" value="Add to Cart" class="btn btn-success btn-block">
+                    </form>
+                </div>
+            </div>
+        </div>
+        {{else}}
+        <h1>No product Available</h1>
+        {{/if}}
+    </div>
+</div>

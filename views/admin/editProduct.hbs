@@ -1,0 +1,38 @@
+<div class="container">
+    <h1>Edit Product</h1>
+
+    {{#if errorMessage}}
+    <div class="user-message user-message--error">{{errorMessage}}</div>
+    {{/if}}
+
+    {{!-- {{#if product}} --}}
+    <form action="/admin/edit-product/{{product._id}}" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" name="title" class="form-control" id="title" value="{{product.title}}">
+        </div>
+        {{!-- <div class="form-group">
+            <label for="image">Image</label>
+            <input type="text" name="imageUrl" class="form-control" id="image" value="{{product.imageUrl}}">
+        </div> --}}
+        <div class="form-group">
+            <label for="image">Image</label>
+            <input type="file" name="image" class="form-control" id="image">
+        </div>
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input type="text" name="price" class="form-control" id="price" value="{{product.price}}">
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label><br>
+            <textarea name="description" id="description" cols="120" rows="10">{{product.description}}</textarea>
+        </div>
+        <input type="hidden" value="{{product._id}}" name="productId">
+        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+        <input type="submit" value="Update Product" class="btn btn-primary btn-block">
+    </form>
+    {{!-- {{else}}
+    <h2>NO DATA FOUND</h2>
+    {{/if}} --}}
+
+</div>

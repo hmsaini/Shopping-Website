@@ -1,0 +1,31 @@
+<div class="container">
+    <h1>Add Product</h1>
+    {{#if errorMessage}}
+    <div class="user-message user-message--error">{{errorMessage}}</div>
+    {{/if}}
+    <form action="/admin/add-product" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" name="title" class="form-control" id="title" value="{{oldInput.title}}">
+        </div>
+        {{!-- <div class="form-group">
+            <label for="imageURL">Image</label>
+            <input type="text" name="imageUrl" class="form-control" id="imageURL" value="{{oldInput.imageUrl}}">
+        </div> --}}
+        <div class="form-group">
+            <label for="image">Image</label>
+            <input type="file" name="image" class="form-control" id="image">
+        </div>
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input type="text" name="price" class="form-control" id="price" value="{{oldInput.price}}">
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea name="description" class="form-control" rows="7" cols="70"
+                id="description">{{oldInput.description}}</textarea>
+        </div>
+        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+        <input type="submit" value="Add Product" class="btn btn-primary btn-block">
+    </form>
+</div>

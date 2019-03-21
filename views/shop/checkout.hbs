@@ -1,0 +1,45 @@
+<div class="container" style="margin-top: 40px;">
+    <div class="row">
+        <div class="col-md-12">
+            {{#if products}}
+            <div class="table-responsive ">
+                <table class="table table-hover">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Title</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {{#each products}}
+                        <tr>
+                            <td scope="row">{{this.productId.title}}</td>
+                            <td><b>{{this.quantity}}</b></td>
+                            <td>{{this.quantity}} x ${{this.productId.price}}</td>
+                        </tr>
+                        {{/each}}
+                        <hr>
+
+                    </tbody>
+                </table>
+            </div>
+            <h2>Total : ${{totalSum}}</h2>
+
+            <div>
+                <form action="/create-order" method="POST">
+                    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                        data-key="pk_test_aPhMIyuDeASemhnr8SAFveJ8" data-amount="{{totalSum}}"
+                        data-name="Your Order" data-description="All the items you ordered"
+                        data-image="https://stripe.com/img/documentation/checkout/marketplace.png" data-locale="auto"
+                        data-currency="usd">
+                        </script>
+                </form>
+            </div>
+
+            {{else}}
+            <h3>No Product in the cart.</h3>
+            {{/if}}
+        </div>
+    </div>

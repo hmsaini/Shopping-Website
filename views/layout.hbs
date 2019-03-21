@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>{{title}}</title>
+  <link href="/public/stylesheets/bootstrap.css" rel="stylesheet">
+  <link href="/public/stylesheets/style.css" rel="stylesheet">
+</head>
+
+<body>
+  {{{body}}}
+
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <div class="container">
+      {{!-- <a class="navbar-brand" href="/">Shop</a> --}}
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+        aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item ">
+            <a class="nav-link " href="/">Shop</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link " href="/products">Products</a>
+          </li>
+          {{#if isAuthenticated}}
+          <li class="nav-item ">
+            <a class="nav-link " href="/admin/products">Admin Products</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link " href="/admin/add-product">Add Product</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link " href="/cart">Cart</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link " href="/orders">Orders</a>
+          </li>
+          <li class="nav-item">
+            <form action="/logout" method="post">
+              <input type="hidden" name="_csrf" value="{{csrfToken}}">
+              <button type="submit" class="btn btn-primary">Logout</button>
+            </form>
+          </li>
+          {{else}}
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/signup">Register</a>
+          </li>
+          {{/if}}
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col-lg-12">
+        {{#if success_msg}}
+        <div class="alert alert-success">{{success_msg}}</div>
+        {{/if}}
+
+        {{#if error_msg}}
+        <div class="alert alert-danger">{{error_msg}}</div>
+        {{/if}}
+
+        {{#if error}}
+        <div class="alert alert-danger">{{error}}</div>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container">
+    <footer style="margin-top:100px;">
+      <div class="row">
+        <div class="col-12-lg">
+          <p>TextBooks &copy; 2018 | <a href="/manage">Manage</a></p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="/public/javascripts/bootstrap.js"></script>
+</body>
+
+</html>
